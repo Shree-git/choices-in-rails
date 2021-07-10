@@ -18,7 +18,9 @@
   <body>
     <%= render 'home/header' %>
     <div class="container">
-      <p class="notice"><%= notice %></p>
+      <% if notice %>
+      <div class="notice alert alert-primary" role="alert"><%= notice %></div>
+      <% end %>
       <%= yield %>
     </div>
 

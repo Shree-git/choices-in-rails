@@ -1,12 +1,12 @@
-<p>
-  <strong>Title:</strong>
-  <%= @journal.title %>
-</p>
+<br /><br />
+<div class="show-journal">
+  <h1 class="display-4">
+    <%= @journal.title %>
+  </h1>
 
-<p>
-  <strong>Desc:</strong>
-  <%= @journal.desc %>
-</p>
-
-<%= link_to 'Edit', edit_journal_path(@journal) %> |
-<%= link_to 'Back', journals_path %>
+  <p class="lead desc">
+    <%= @journal.desc %>
+  </p>
+  <%= link_to 'Edit', edit_journal_path(@journal), class:"btn btn-primary btn-lg" %>
+  <%= link_to 'Back', journals_path, class:"btn btn-secondary btn-lg" %>
+</div>

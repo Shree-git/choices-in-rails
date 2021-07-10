@@ -5,7 +5,7 @@
     <div class="row row-cols-1 row-cols-md-3 g-4">
     <% @journals.each do |journal| %>
         <div class="col">
-        <div class="card h-100" style="width: 18rem;">
+        <div class="card h-100 position-relative" style="width: 18rem;">
         
           <div class="card-body">
           
@@ -15,8 +15,8 @@
             <% else %>
               <p class="card-text"><%= journal.desc %></p>
             <% end %>
-            <%= link_to '', journal, class: "stretched-link"%>
-            <%= link_to 'Edit', edit_journal_path(journal), class: "btn btn-primary" %></td>
+            <%= link_to 'View', journal, class: "btn btn-primary" %></td>
+            <%= link_to 'Edit', edit_journal_path(journal), class: "btn btn-secondary" %></td>
             <%= link_to 'Delete', journal, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
           </div>
         </div>
