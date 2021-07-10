@@ -1,0 +1,2 @@
+class Impulse < ApplicationRecord
+end
