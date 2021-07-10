@@ -1,27 +1,29 @@
 <h1>Journals</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Desc</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
     <% @journals.each do |journal| %>
-      <tr>
-        <td><%= journal.title %></td>
-        <td><%= journal.desc %></td>
-        <td><%= link_to 'Show', journal %></td>
-        <td><%= link_to 'Edit', edit_journal_path(journal) %></td>
-        <td><%= link_to 'Destroy', journal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+        <div class="col">
+        <div class="card h-100" style="width: 18rem;">
+        
+          <div class="card-body">
+          
+            <h5 class="card-title"><%= journal.title %></h5>
+            <% if (journal.desc.length > 100) %>
+              <p class="card-text"><%= journal.desc[0..100] %>....</p>
+            <% else %>
+              <p class="card-text"><%= journal.desc %></p>
+            <% end %>
+            <%= link_to '', journal, class: "stretched-link"%>
+            <%= link_to 'Edit', edit_journal_path(journal), class: "btn btn-primary" %></td>
+            <%= link_to 'Delete', journal, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+          </div>
+        </div>
+        </div>
+    
     <% end %>
-  </tbody>
-</table>
-
+    </div>
 <br>
 
-<%= link_to 'New Journal', new_journal_path %>
+<%= link_to 'New Journal', new_journal_path, class:"btn btn-secondary" %>
