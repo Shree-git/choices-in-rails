@@ -1,4 +1,5 @@
 class ImpulsesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_impulse, only: %i[ show edit update destroy ]
 
   # GET /impulses or /impulses.json
