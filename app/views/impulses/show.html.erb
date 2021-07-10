@@ -1,19 +1,14 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @impulse.title %>
-</p>
-
-<p>
-  <strong>Level:</strong>
-  <%= @impulse.level %>
-</p>
-
-<p>
-  <strong>Desc:</strong>
-  <%= @impulse.desc %>
-</p>
-
-<%= link_to 'Edit', edit_impulse_path(@impulse) %> |
-<%= link_to 'Back', impulses_path %>
+<br /><br />
+<div class="show-journal">
+  <h1 class="display-4">
+    <%= @impulse.title %>
+  </h1>
+  <h2 class="lead">
+    Level: <%= @impulse.level %>
+  </h2>
+  <p class="lead desc">
+    <%= @impulse.desc %>
+  </p>
+  <%= link_to 'Edit', edit_impulse_path(@impulse), class:"btn btn-primary btn-lg" %>
+  <%= link_to 'Back', impulses_path, class:"btn btn-secondary btn-lg" %>
+</div>

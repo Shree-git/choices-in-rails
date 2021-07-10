@@ -1,31 +1,25 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Impulses</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Level</th>
-      <th>Desc</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
     <% @impulses.each do |impulse| %>
-      <tr>
-        <td><%= impulse.title %></td>
-        <td><%= impulse.level %></td>
-        <td><%= impulse.desc %></td>
-        <td><%= link_to 'Show', impulse %></td>
-        <td><%= link_to 'Edit', edit_impulse_path(impulse) %></td>
-        <td><%= link_to 'Destroy', impulse, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <div class="col">
+        <div class="card h-100 position-relative" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title"><%= impulse.title %></h5>
+            <h5 class="card-text">Level: <%= impulse.level %></h5>
+            <% if (impulse.desc.length > 100) %>
+              <p class="card-text"><%= impulse.desc[0..100] %>....</p>
+            <% else %>
+              <p class="card-text"><%= impulse.desc %></p>
+            <% end %>
+            <%= link_to 'View', impulse, class: "btn btn-primary" %></td>
+            <%= link_to 'Edit', edit_impulse_path(impulse), class: "btn btn-secondary" %></td>
+            <%= link_to 'Delete', impulse, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+          </div>
+        </div>
+      </div>
     <% end %>
-  </tbody>
-</table>
-
+  </div>
 <br>
 
-<%= link_to 'New Impulse', new_impulse_path %>
+<%= link_to 'New Impulse', new_impulse_path, class:"btn btn-secondary" %>
+

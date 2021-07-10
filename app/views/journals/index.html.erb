@@ -1,8 +1,5 @@
 <h1>Journals</h1>
-
-
-
-    <div class="row row-cols-1 row-cols-md-3 g-4">
+  <div class="row row-cols-1 row-cols-md-3 g-4">
     <% @journals.each do |journal| %>
         <div class="col">
         <div class="card h-100 position-relative" style="width: 18rem;">
@@ -20,10 +17,9 @@
             <%= link_to 'Delete', journal, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
           </div>
         </div>
-        </div>
-    
+      </div>
     <% end %>
-    </div>
+  </div>
 <br>
 
 <%= link_to 'New Journal', new_journal_path, class:"btn btn-secondary" %>

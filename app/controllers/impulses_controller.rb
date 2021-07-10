@@ -4,7 +4,7 @@ class ImpulsesController < ApplicationController
 
   # GET /impulses or /impulses.json
   def index
-    @impulses = Impulse.all
+    @impulses = Impulse.all.where(user_id: current_user)
   end
 
   # GET /impulses/1 or /impulses/1.json
@@ -22,7 +22,7 @@ class ImpulsesController < ApplicationController
 
   # POST /impulses or /impulses.json
   def create
-    @impulse = Impulse.new(impulse_params)
+    @impulse = current_user.impulses.create(impulse_params)
 
     respond_to do |format|
       if @impulse.save
@@ -65,6 +65,6 @@ class ImpulsesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def impulse_params
-      params.require(:impulse).permit(:title, :level, :desc)
+      params.require(:impulse).permit(:title, :level, :desc, :user_id)
     end
 end

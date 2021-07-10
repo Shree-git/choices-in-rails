@@ -1,6 +1,5 @@
 <h1>Editing Impulse</h1>
 
-<%= render 'form', impulse: @impulse %>
+<%= render 'form', impulse: @impulse, btnName: "Update" %>
 
-<%= link_to 'Show', @impulse %> |
-<%= link_to 'Back', impulses_path %>
+<%= link_to 'Back', impulses_path, class:"btn btn-secondary back" %>
