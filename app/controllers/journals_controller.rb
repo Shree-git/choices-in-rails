@@ -4,7 +4,7 @@ class JournalsController < ApplicationController
 
   # GET /journals or /journals.json
   def index
-    @journals = Journal.all
+    @journals = Journal.all.where(user_id: current_user)
   end
 
   # GET /journals/1 or /journals/1.json
@@ -22,7 +22,7 @@ class JournalsController < ApplicationController
 
   # POST /journals or /journals.json
   def create
-    @journal = Journal.new(journal_params)
+    @journal = current_user.journals.create(journal_params)
 
     respond_to do |format|
       if @journal.save
@@ -63,8 +63,14 @@ class JournalsController < ApplicationController
       @journal = Journal.find(params[:id])
     end
 
+    # def get_user_id
+    #   if user_signed_in?
+    #     self.user_id = current_user
+    #   end
+    # end
+
     # Only allow a list of trusted parameters through.
     def journal_params
-      params.require(:journal).permit(:title, :desc)
+      params.require(:journal).permit(:title, :desc, :user_id)
     end
 end
