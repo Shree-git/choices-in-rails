@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'inbox/index'
   devise_for :users
   resources :impulses
   resources :journals
