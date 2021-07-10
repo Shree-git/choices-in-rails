@@ -27,10 +27,10 @@ ActiveRecord::Schema.define(version: 2021_07_10_132536) do
 
   create_table "journals", force: :cascade do |t|
     t.string "title"
-    t.string "desc"
+    t.text "desc"
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_journals_on_user_id"
   end
 
@@ -47,5 +47,4 @@ ActiveRecord::Schema.define(version: 2021_07_10_132536) do
   end
 
   add_foreign_key "impulses", "users"
-  add_foreign_key "journals", "users"
 end
