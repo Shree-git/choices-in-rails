@@ -1,2 +1,0 @@
-class Impulse < ApplicationRecord
-end
