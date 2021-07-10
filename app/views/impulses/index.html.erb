@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Impulses</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Level</th>
+      <th>Desc</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @impulses.each do |impulse| %>
+      <tr>
+        <td><%= impulse.title %></td>
+        <td><%= impulse.level %></td>
+        <td><%= impulse.desc %></td>
+        <td><%= link_to 'Show', impulse %></td>
+        <td><%= link_to 'Edit', edit_impulse_path(impulse) %></td>
+        <td><%= link_to 'Destroy', impulse, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Impulse', new_impulse_path %>
