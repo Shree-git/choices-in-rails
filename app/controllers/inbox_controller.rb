@@ -5,6 +5,7 @@ class InboxController < ApplicationController
 
   def chat
     @current_user = current_user
-    
+    @user = User.find(params[:id])
+    # logger.debug @user.data
   end
 end
