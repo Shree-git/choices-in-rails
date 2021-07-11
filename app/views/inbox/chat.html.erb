@@ -3,7 +3,23 @@
 </div>
 
 <div class="chat-body">
-    <%=  %>
+ 
+    <% @my_chats.each do |chat| %>
+        <div class="message-box">
+            <p><%= chat.message %></p>
+            <p><%= chat.created_at %></p>
+            <p><%= User.find_by(id: chat.sender_id).email %></p>
+        </div>
+        <br />
+    <% end %>
+    <% @other_chats.each do |chat| %>
+        <div class="message-box">
+            <p><%= chat.message %></p>
+            <p><%= chat.created_at %></p>
+            <p><%= User.find_by(id: chat.sender_id).email %></p>
+        </div>
+        <br />
+    <% end %>
 </div>
 
 <div class="type-section">
