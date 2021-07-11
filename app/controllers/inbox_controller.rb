@@ -7,16 +7,21 @@ class InboxController < ApplicationController
 
   def chat
     @current_user = current_user
+    
     # logger.debug @user.data
     @chat = Chat.new
   end
 
   def create
-    @chat = Chat.create(message: params[:message], sender_id: current_user, receiver_id: params[:id])
-
+    @chat = Chat.create(message: params[:chat][:message], sender_id: current_user.id, receiver_id: params[:id])
+    logger.debug "This is the current user " + current_user.id.to_s
+    logger.debug params
+    logger.debug @chat.message 
+    logger.debug @chat.sender_id
+    logger.debug @chat.receiver_id
     respond_to do |format|
       if @chat.save
-        # format.html { notice: "Message was successfully sent." }
+        format.html { redirect_to "/inbox/#{params[:id]}" ,notice: "Message was successfully sent." }
       else
         # format.html { status: :unprocessable_entity }
         format.json { render json: @chat.errors, status: :unprocessable_entity }

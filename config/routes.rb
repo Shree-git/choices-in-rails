@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'inbox/index'
   get 'inbox/:id', to: 'inbox#chat', as: 'chats'
+  post 'inbox/:id', to: 'inbox#create'
   devise_for :users
   resources :impulses
   resources :journals
