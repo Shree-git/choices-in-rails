@@ -1,5 +1,5 @@
 <% @users.each do |user| %>
     <div>
-        <%= link_to user.email, chat_path(user), class: "btn btn-primary" %>
+        <%= link_to user.email, chats_path(user), class: "btn btn-primary" %>
     </div>
 <% end %>

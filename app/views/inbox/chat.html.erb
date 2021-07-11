@@ -2,10 +2,30 @@
     <h1><%= @user.email %></h1>
 </div>
 
-<div class="body">
+<div class="chat-body">
 
 </div>
 
 <div class="type-section">
-    
+    <%= form_with(model: @chat) do |form| %>
+        <% if @chat.errors.any? %>
+            <div id="error_explanation">
+                <h2><%= pluralize(@chat.errors.count, "error") %> prohibited this message from being sent:</h2>
+
+                <ul>
+                    <% @chat.errors.each do |error| %>
+                        <li><%= error.full_message %></li>
+                    <% end %>
+                </ul>
+            </div>
+        <% end %>
+
+        <div class="form-group">
+            <%= form.label :message %>
+            <%= form.text_area :message, class:"form-control" %>
+        </div>
+        <div class="action">
+            <%= form.submit 'Send', class:"btn btn-primary" %>
+        </div>
+    <% end %>
 </div>
