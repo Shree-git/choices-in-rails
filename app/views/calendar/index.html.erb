@@ -1,5 +1,5 @@
 <%= month_calendar(events: @meetings) do |date, meetings| %>
-  <%= date.strftime("%d") %>
+   <a href="#"> <%= date.strftime("%d") %></a>
 
   <% meetings.each do |meeting| %>
     <div>
