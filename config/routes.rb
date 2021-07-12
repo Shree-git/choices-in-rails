@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'calendar/index'
   get 'inbox/index'
   get 'inbox/:id', to: 'inbox#chat', as: 'chats'
   post 'inbox/:id', to: 'inbox#create'
