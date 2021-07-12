@@ -15,9 +15,18 @@
     border: 1px solid gray;
     padding: 3px;
     margin: 3px;
+    border-radius: 10px;
     // width: 100%;
     // text-align: right;
     // color: red;
+
+    .my-timestamp{
+        float:right;
+    }
+
+    .other-timestamp{
+        float:left;
+    }
 }
 
 .flex-container {
@@ -32,3 +41,11 @@
     text-align: right;
     color: red;
   }
+
+  .my-message{
+      background-color: greenyellow;
+
+      
+  }
+
+

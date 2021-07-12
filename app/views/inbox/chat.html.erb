@@ -2,8 +2,20 @@
     <h1><%= @user.email %></h1>
 </div>
 
-<div class="chat-body">
- 
+<div class="chat-body overflow-auto">
+    <% if @sorted_chats %>
+    <% @sorted_chats.each do |chat| %>
+        <div class="message-box <%= "my-message" if (chat["sender_id"] == @current_user.id) %>">
+            <p><%= chat["message"] %></p>
+            <p><%= chat["created_at"] %></p>
+            <p class="<%= (chat["sender_id"] == @current_user.id) ? "my-timestamp" : "other-timestamp" %>"><%= User.find_by(id: chat["sender_id"]).email %></p>
+        </div>
+        <br />
+    <% end %>
+    <% end %>
+<%
+=begin%>
+  
     <% @my_chats.each do |chat| %>
         <div class="message-box">
             <p><%= chat.message %></p>
@@ -19,7 +31,9 @@
             <p><%= User.find_by(id: chat.sender_id).email %></p>
         </div>
         <br />
-    <% end %>
+    <% end %> 
+<%
+=end%>
 </div>
 
 <div class="type-section">

@@ -12,7 +12,17 @@ class InboxController < ApplicationController
     @chat = Chat.new
     @my_chats = Chat.all.where(sender_id: current_user.id, receiver_id: params[:id]).order(created_at: :asc)
     @other_chats = Chat.all.where(sender_id: params[:id], receiver_id: current_user.id).order(created_at: :asc)
-    # @chatss = [@mychats, @other_chats]
+    @chats = (@my_chats.as_json).push(@other_chats.as_json.first).compact
+    # logger.debug @chats
+    # unless @chats != []
+    @sorted_chats = @chats.sort_by { |c| c["created_at"] }
+    # end
+    # logger.debug hi
+    # @chats.each do |cha|
+    #   logger.debug cha['id']
+    #   # logger.debug cha[:id]
+    #   # logger.debug cha.id
+    # end
   end
 
   def create
