@@ -7,6 +7,7 @@ import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import ChatPage from './chat_components/ChatPage'
 
+
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
     <ChatPage />,
