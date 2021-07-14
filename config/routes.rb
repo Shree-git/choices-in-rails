@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'calendar/index'
   get 'inbox/index'
+  get 'inbox/chat/:id', to: 'inbox#get_chat', as: 'getchats'
   get 'inbox/:id', to: 'inbox#chat', as: 'chats'
   post 'inbox/:id', to: 'inbox#create'
   devise_for :users
