@@ -1,28 +1,35 @@
-import React from "react";
-import axios from "axios";
+import React from "react"
+import axios from "axios"
 
 const csrfToken = document.querySelector('[name="csrf-token"]').content;
 axios.defaults.headers.common["X-CSRF-TOKEN"] = csrfToken;
 
 class ChatPage extends React.Component {
-  constructor() {
-    super();
-
+  constructor(props) {
+    super(props);
+    console.log(this.props)
     axios
-      .get("http://localhost:3000/inbox/chat/3", {
+      .get(`http://localhost:3000/inbox/${this.props.id}`, {
         headers: {"Access-Control-Allow-Origin": "*"}
       })
       .then((data) => {
         console.log(data)
-        debugger
+        
+        
       })
       .catch((data) => {
+        
         debugger
       });
   }
 
   render() {
-    return <div>Chat page works</div>;
+    return (
+
+      <div>{this.props.id}</div>
+      
+      
+    )
   }
 }
 

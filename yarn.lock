@@ -5597,6 +5597,13 @@ react@^17.0.2:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
 
+react_ujs@^2.6.0, react_ujs@^2.6.1:
+  version "2.6.1"
+  resolved "https://registry.yarnpkg.com/react_ujs/-/react_ujs-2.6.1.tgz#a202a33c95c9e2bb18ab56926b7e79f3325ec855"
+  integrity sha512-9M33/A8cubStkZ2cpJSimcTD0RlCWiqXF6e90IQmMw/Caf/W0dtAzOtHtiQE3JjLbt/nhRR7NLPxMfnlm141ig==
+  dependencies:
+    react_ujs "^2.6.0"
+
 read-cache@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/read-cache/-/read-cache-1.0.0.tgz#e664ef31161166c9751cdbe8dbcf86b5fb58f774"
@@ -6877,6 +6884,11 @@ webpack@^4.46.0:
     terser-webpack-plugin "^1.4.3"
     watchpack "^1.7.4"
     webpack-sources "^1.4.1"
+
+webpacker-react@^0.3.2:
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/webpacker-react/-/webpacker-react-0.3.2.tgz#18c417a3fd51978d0ca98b62a47454d800754e09"
+  integrity sha1-GMQXo/1Rl40MqYtipHRU2AB1Tgk=
 
 websocket-driver@>=0.5.1, websocket-driver@^0.7.4:
   version "0.7.4"

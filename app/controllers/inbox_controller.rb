@@ -7,7 +7,7 @@ class InboxController < ApplicationController
 
   def chat
     @current_user = current_user
-    
+    @other_user_id = params[:id]
     # logger.debug @user.data
     @chat = Chat.new
     @my_chats = Chat.all.where(sender_id: current_user.id, receiver_id: params[:id]).order(created_at: :asc)
@@ -23,7 +23,7 @@ class InboxController < ApplicationController
     #   # logger.debug cha[:id]
     #   # logger.debug cha.id
     # end
-   
+    
   end
 
   def get_chat
