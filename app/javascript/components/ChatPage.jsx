@@ -15,7 +15,7 @@ const ChatPage = (props) => {
 
     const handleSubmit = (event) => {
       event.preventDefault()
-      axios.post(`${window.location.hostname}/inbox/${props.other_user.id}`, {message: message})
+      axios.post(`//${window.location.host}/inbox/${props.other_user.id}`, {message: message})
       .then(resp => {
           setMessage("")
           setChat(resp.data)
