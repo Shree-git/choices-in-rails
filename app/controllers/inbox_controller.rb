@@ -9,13 +9,9 @@ class InboxController < ApplicationController
     @current_user = current_user
     @other_user_id = params[:id]
     # logger.debug @user.data
-    @chat = Chat.new
-    @my_chats = Chat.all.where(sender_id: current_user.id, receiver_id: params[:id]).order(created_at: :asc)
-    @other_chats = Chat.all.where(sender_id: params[:id], receiver_id: current_user.id).order(created_at: :asc)
-    @chats = (@my_chats.as_json).push(@other_chats.as_json.first).compact
-    # logger.debug @chats
-    # unless @chats != []
-    @sorted_chats = @chats.sort_by { |c| c["created_at"] }
+    # @chat = Chat.new
+    sort_chats()
+    
     # end
     # logger.debug hi
     # @chats.each do |cha|
@@ -31,12 +27,7 @@ class InboxController < ApplicationController
     
     # logger.debug @user.data
     @chat = Chat.new
-    @my_chats = Chat.all.where(sender_id: current_user.id, receiver_id: params[:id]).order(created_at: :asc)
-    @other_chats = Chat.all.where(sender_id: params[:id], receiver_id: current_user.id).order(created_at: :asc)
-    @chats = (@my_chats.as_json).push(@other_chats.as_json.first).compact
-    # logger.debug @chats
-    # unless @chats != []
-    @sorted_chats = @chats.sort_by { |c| c["created_at"] }
+    sort_chats()
     # end
     # logger.debug hi
     # @chats.each do |cha|
@@ -54,19 +45,16 @@ class InboxController < ApplicationController
  
 
   def create
-    @chat = Chat.create(message: params[:chat][:message], sender_id: current_user.id, receiver_id: params[:id])
-    logger.debug "This is the current user " + current_user.id.to_s
     logger.debug params
+    @chat = Chat.create(message: params[:message], sender_id: current_user.id, receiver_id: params[:id])
+    logger.debug "This is the current user " + current_user.id.to_s
+    
     logger.debug @chat.message 
     logger.debug @chat.sender_id
     logger.debug @chat.receiver_id
-    respond_to do |format|
-      if @chat.save
-        format.html { redirect_to "/inbox/#{params[:id]}" ,notice: "Message was successfully sent." }
-      else
-        # format.html { status: :unprocessable_entity }
-        format.json { render json: @chat.errors, status: :unprocessable_entity }
-      end
+    if @chat.save
+      sort_chats()
+      render json: @sorted_chats  
     end
   end
 
@@ -78,5 +66,20 @@ class InboxController < ApplicationController
 
     def chat_params
       params.require(:chat).permit(:message, :sender_id, :receiver_id)
+    end
+
+    def sort_chats
+      @my_chats = Chat.all.where(sender_id: current_user.id, receiver_id: params[:id])
+      logger.debug @my_chats.as_json.count
+      @other_chats = Chat.all.where(sender_id: params[:id], receiver_id: current_user.id)
+      logger.debug @other_chats.as_json
+      @chats = (@my_chats.as_json)
+      @other_chats.as_json.each do |c|
+        @chats << c
+      end
+      @chats = @chats.compact
+      # logger.debug @chats
+      # unless @chats != []
+      @sorted_chats = @chats.sort_by { |c| c["created_at"] }
     end
 end
